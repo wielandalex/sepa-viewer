@@ -1,13 +1,15 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
-const CleanWebpackPlugin = require("clean-webpack-plugin");
+const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 
 module.exports = {
     entry: {
         app: "./src/index.js"
     },
     plugins: [
-        new CleanWebpackPlugin(["public"]),
+        new CleanWebpackPlugin({
+            cleanOnceBeforeBuildPatterns: ["public"]
+        }),
         new HtmlWebpackPlugin({
             title: "SEPA Viewer",
             template: "./src/index.html"
@@ -38,6 +40,12 @@ module.exports = {
                     chunks: "all"
                 }
             }
+        }
+    },
+    resolve: {
+        fallback: {
+            "stream": require.resolve("stream-browserify"),
+            "buffer": require.resolve("buffer/")
         }
     }
 };
