@@ -85,7 +85,7 @@ export class App {
             card.innerHTML = `Beleg-ID: ${pmtInf.PmtInfId._text}&emsp;Durchführungsdatum: ${App.getLocaleDateString(pmtInf.ReqdColltnDt._text)}<br>
                                 Anzahl Transaktionen: ${pmtInf.NbOfTxs._text}&emsp;Kontrollsumme: ${parseFloat(pmtInf.CtrlSum._text).toLocaleString()}<br>
                                 Name: ${pmtInf.Cdtr.Nm._text}&emsp;Identifikation: ${pmtInf.CdtrSchmeId.Id.PrvtId.Othr.Id._text}<br>
-                                IBAN: ${pmtInf.CdtrAcct.Id.IBAN._text}&emsp;BIC: ${pmtInf.CdtrAgt.FinInstnId.BIC._text}`;
+                                IBAN: ${pmtInf.CdtrAcct.Id.IBAN._text}&emsp;BIC: ${pmtInf.CdtrAgt.FinInstnId.BICFI._text}`;
 
             // Create the list for all DrctDbtTxInf
             const list = document.createElement("ul");
@@ -103,7 +103,7 @@ export class App {
                 const item = document.createElement("li");
                 item.classList.add("mdc-list-item");
                 item.innerHTML = `Name: ${drctDbtTxInf.Dbtr.Nm._text}&emsp;Betrag: ${drctDbtTxInf.InstdAmt._attributes.Ccy} ${parseFloat(drctDbtTxInf.InstdAmt._text).toLocaleString()}&emsp;${drctDbtTxInf.RmtInf.Ustrd._text.replace("Schulgeld ", "")}<br>
-                                IBAN: ${drctDbtTxInf.DbtrAcct.Id.IBAN._text}&emsp;BIC: ${drctDbtTxInf.DbtrAgt.FinInstnId.BIC._text}&emsp;Deb.-/Anmelder-ID: ${drctDbtTxInf.DrctDbtTx.MndtRltdInf.MndtId._text}`;
+                                IBAN: ${drctDbtTxInf.DbtrAcct.Id.IBAN._text}&emsp;BIC: ${drctDbtTxInf.DbtrAgt.FinInstnId.BICFI._text}&emsp;Deb.-/Anmelder-ID: ${drctDbtTxInf.DrctDbtTx.MndtRltdInf.MndtId._text}`;
 
                 list.appendChild(item);
             }
